@@ -1,0 +1,18 @@
+.form-control-sm {
+  font-size: 11px;
+}
+
+.form-group {
+  margin: 5px 2px;
+  line-height: normal!important;
+}
+/*
+.ng-invalid.ng-touched:not(form) {
+  border: 1px solid red;
+}
+*/
+.rounded {
+  width: auto;
+  display: inline-block;
+}
+

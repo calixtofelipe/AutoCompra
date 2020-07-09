@@ -1,0 +1,86 @@
+<h1 mat-dialog-title> Orientações </h1>
+<div mat-dialog-content>
+  <b> Para lançamento dos itens:</b>
+  <ul>
+    <li>
+      <span>&#10003;</span> Lembre-se ao cotar que o cliente poderá comprar separadamente cada item.
+      Importante informar o Valor do frete para cada item para que o cliente possa conseguir comprar separadamente.
+    </li>
+    <li>
+      <span>&#10003;</span> O valor do "Frete p/ Qtd.Cotada" representa o valor do frete para o total da
+      quantidade cotada. Exemplo: Se a quantidade cotada for 10 unidades. O "Frete p/ Qtd.Cotada" deve ser
+      o valor para entregar as 10 unidades.
+    </li>
+    <li>
+      <span>&#10003;</span> A data da entrega pode ser reduzida sempre que o fornecedor quiser melhorar
+      o prazo de entrega.
+    </li>
+    <li>
+      <span>&#10003;</span> A quantidade de parcelas e Interv. de Pagto (Intervalo de pagamento)
+      são para alterar a condição de pagamento acordada.
+    </li>
+    <li>
+      <span>&#10003;</span> Somente será habilitado salvar a cotação se informar valor unitário ou se
+      informar o motivo de rejeição.
+    </li>
+    <li>
+      <span>&#10003;</span> Atenção a Marca/Produto/Imagem/Referência ao cotar o item, não informe produtos alternativos
+      sem consultar o cliente.
+    </li>
+    <li>
+      <span>&#10003;</span> Os campos "Descrição do produto e Referência do Fornecedor" se não estiverem corretos o
+      fornecedor
+      deve atualizar conforme os seus dados para que facilite nas proximas cotações reconhecer o produto
+      solicitado.ngFor
+    </li>
+  </ul>
+  <b> Lançamento dos campos do Pedido: </b>
+  <ul>
+    <li>
+      <span>&#10003;</span> Após feito o lançamento dos itens é possivel informar
+      Vlr. Frete / Condição de pagamento / Dt.Entrega diferentes caso o cliente feche a cotação completa.
+    </li>
+    <li>
+      <span>&#10003;</span> O Vlr.Frete (Para fechar todos os itens) o fornecedor pode informar um valor menor
+      que a soma dos fretes dos itens para tentar conseguir fechar a cotação completa.
+    </li>
+  </ul>
+  <b> Importante: </b>
+  <ul>
+    <li>
+      <span>&#10003;</span> Quanto menor o prazo de entrega, maior as condições de pagamento e menores os valores
+      maiores as chances
+      de vencer uma cotação.
+    </li>
+    <li>
+      <span>&#10003;</span> O Vlr.Frete (Para fechar todos os itens) deve ser um valor informado caso o fornecedor
+      consiga um preço melhor na compra de todos os itens da cotação. Assim só é possível informar um frete menor
+      que o total do frete de todos os itens.
+    </li>
+  </ul>
+  <b> Preenchimento via Excel: </b>
+  <ul>
+    <li>
+      <span>&#10003;</span> Primeiro o fornecedor deve exportar o modelo.
+    </li>
+    <li>
+      <span>&#10003;</span> Colunas e ordem dos itens na planilha excel devem ser mantidas para que seja feita a
+      importação correta.
+    </li>
+    <li>
+      <span>&#10003;</span> Os campos obrigatórios no preenchimento feito pelo sistema continuam sendo necessário no
+      preenchimento via excel.
+      Ao fazer o envio via planilha, lembre-se de preencher da mesma forma que faria via sistema.
+    </li>
+    <li>
+      <span>&#10003;</span> Para os campos referente ao Pedido: Vlr.Frete Pedido(para fechar todos itens), Data de
+      Entrega Pedido e
+      Cond.Pagamento Pedido somente a informação do primeiro item será considerada. Só precisa informar na linha
+      referente ao primeiro item.
+    </li>
+  </ul>
+</div>
+<div mat-dialog-actions>
+  <mat-checkbox [(ngModel)]="data.defaultDicas"> Não apresentar mais dicas </mat-checkbox>
+  <button [mat-dialog-close]="data.defaultDicas" class="closeDicas" mat-button>Fechar</button>
+</div>

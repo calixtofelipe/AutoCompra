@@ -1,0 +1,11 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+.navbar {
+  height: 40px;
+}
+
+.btn-info {
+  margin-left: auto;
+}

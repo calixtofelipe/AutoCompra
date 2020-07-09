@@ -1,0 +1,117 @@
+<nav class="navbar navbar-expand-md">
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <button [disabled]="isInvalid()" mat-raised-button (click)="onSalvar()" color="primary">Salvar</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+<form [formGroup]="formulario">
+  <div class="row">
+    <div class="col-sm">
+      <img style="max-width: 220px; height: auto; background: #ccc; margin: 12px;" class="rounded" [src]="linkimagem">
+      <div class="form-group">
+        <label matTooltip="Descrição apresentada na NFe" matTooltipPosition="after"><b>Descrição do Produto</b></label>
+        <input class="form-control form-control-sm" type="text" formControlName="descrforn">
+        <label matTooltip="Cód.Produto na NFe" matTooltipPosition="after"><b> Referência Fornecedor </b></label>
+        <input class="form-control form-control-sm" type="text" formControlName="refforn">
+        <h6>Marca</h6>
+        <input matInput class="form-control form-control-sm" type="text" formControlName="marca" readonly>
+        <h6>Data Limite para Resposta</h6>
+        <input class="form-control form-control-sm" formControlName="dtlimite" type="text" readonly>
+        <h6>Descrição do Comprador</h6>
+        <input class="form-control form-control-sm" formControlName="descrprod" type="text" readonly>
+        <div class="row">
+          <div class="col">
+            <h6>Referência</h6>
+            <input class="form-control form-control-sm" formControlName="codprod" type="text" readonly>
+          </div>
+          <div class="col">
+            <h6>Controle</h6>
+            <input class="form-control form-control-sm" formControlName="controle" type="text" readonly>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <h6>Qtd.Cotada</h6>
+            <input id="qtdcotada" type="text" class="form-control form-control-sm" formControlName="qtdcotada" readonly>
+          </div>
+          <div class="col">
+            <h6>Unidade</h6>
+            <input id="unidade" type="text" class="form-control form-control-sm" formControlName="unidade" readonly>
+          </div>
+          <div class="col">
+            <label matTooltip="Esse preço será validado com valor da nota!" matTooltipPosition="above">
+              <b>Vlr.Unitário</b></label>
+            <input (ngModelChange)="vlrTotLiq($event)" type="text" id="vlrcotado" (keyup.enter)=onSalvar() formControlName="vlrcotado" autocomplete="off"
+              [maxLength]="12" currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',' }" class="form-control form-control-sm"
+              cdkFocusInitial>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label matTooltip="Valor para o total da quantidade cotada desse item" matTooltipPosition="above"><b>Vlr.Frete
+                </b></label>
+            <input (ngModelChange)="vlrTotLiqFrete($event)" type="text" id="vlrfreteunit" (keyup.enter)=onSalvar() formControlName="vlrfreteunit" autocomplete="off"
+              [maxLength]="12" currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',' }" class="form-control form-control-sm">
+          </div>
+          <div class="col">
+              <label matTooltip="Total Líquido (Vlr.total + Frete)" matTooltipPosition="above">
+                <b> Total Líquido </b></label>
+              <input type="text" id="vlrtotliq" formControlName="vlrtotliq" autocomplete="off"
+                [maxLength]="12" currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',' }" class="form-control form-control-sm" readonly>
+            </div>
+          <div class="col">
+            <label matTooltip="Caso não for responder cotação para esse produto informe o motivo de rejeição"
+              matTooltipPosition="above">Motivo Rejeição </label>
+            <select id="inputState" formControlName="motrejeicao" class="form-control form-control-sm">
+              <option selected></option>
+              <option> Falta de Estoque </option>
+              <option> Não trabalha com o Produto </option>
+              <option> Não consegue entregar no prazo </option>
+              <option> Informar na Observação </option>
+            </select>
+          </div>
+        </div>
+        <!-- <div class="col"> mask="00000000"
+              <mat-datepicker-toggle matSuffix [for]="dtentrega"></mat-datepicker-toggle>
+              <mat-datepicker #dtentrega></mat-datepicker>
+          </div> -->
+        <div class="form-group">
+          <h6>Cond. Pagamento Acordada</h6>
+          <textarea class="form-control" formControlName="descrtipvenda" type="text" rows="2" readonly></textarea>
+          <div class="row">
+            <div class="col">
+              <label matTooltip="É possível diminuir data de entrega" matTooltipPosition="above">Dt.Entrega
+              </label>
+              <input class="form-control form-control-sm" placeholder="____/____/________" mask="00/00/0000" formControlName="dtentrega">
+            </div>
+            <div class="col">
+                <label >Qtd.Parcelas
+                  </label>
+              <input class="form-control form-control-sm" formControlName="qtdparcelas" type="text">
+            </div>
+            <div class="col">
+                <label >Interv.Pagto
+                  </label>
+              <input class="form-control form-control-sm" formControlName="intpagto" type="text">
+            </div>
+            <div class="col-md-2">
+                <h6>&nbsp;</h6>
+              <button [disabled]=permAltTipNeg() type="button" class="btn btn-primary btn-sm" (click)="validaCondPgto()" >Alterar</button>
+            </div>
+          </div>
+        </div>
+        <h6>Observação</h6>
+        <textarea class="form-control" id="obsforn" formControlName="obsforn" rows="3"></textarea>
+        <h6>Observação Comprador</h6>
+        <textarea class="form-control" id="observacao" formControlName="observacao" rows="3" readonly></textarea>
+      </div>
+    </div>
+  </div>
+</form>
